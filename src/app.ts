@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
+import apiRoutes from './routes';
+import errorHandler from './middleware/errorHandler';
 class Application {
   private readonly app: express.Application;
   constructor() {
@@ -16,9 +17,8 @@ class Application {
     this.app.use(bodyParser.json());
   }
   routeInit() {
-    this.app.get('/api/v1/test', (req, res) => {
-      res.json({ ok: true });
-    });
+    this.app.use('/api', apiRoutes);
+    this.app.use(errorHandler);
   }
 }
 
