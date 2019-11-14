@@ -11,9 +11,7 @@
     "test:unit": "mocha --recursive -r tsconfig-paths/register -r ts-node/register -r source-map-support/register src/**/*.spec.ts",
     "test:lint": "eslint --ext .ts ./src",
     "test:lint:fix": "npm run test:lint -- --fix",
-    "test": "npm run test:lint && npm run test:unit",
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
-    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
+    "test": "npm run test:lint && npm run test:unit"
   },
   "nodemonConfig": {
     "ignore": [
@@ -52,9 +50,7 @@
     "supertest": "^4.0.2",
     "ts-node": "^8.5.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.2"
-  },
-  "devDependencies": {
+    "typescript": "^3.7.2",
     "@types/axios": "^0.14.0",
     "@types/joi": "^14.3.4",
     "@types/normalizr": "^2.0.18",
