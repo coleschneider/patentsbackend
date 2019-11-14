@@ -1,9 +1,6 @@
 import { Handler } from 'express';
-import http from 'http';
-import { BadRequest } from 'src/middleware/errorHandler';
-import axios from 'axios';
-import asyncMiddleware from 'src/middleware/asyncMiddleware';
-import CompanyService from 'src/services/companyService';
+import asyncMiddleware from '../../middleware/asyncMiddleware';
+import CompanyService from '../../services/companyService';
 
 export const fetchCompanies: Handler = asyncMiddleware(async (req, res) => {
   const companyService = new CompanyService(req.query);

@@ -1,6 +1,6 @@
 import { schema } from 'normalizr';
 
-export const patentSchema = new schema.Entity(
+export const patentEntity = new schema.Entity(
   'patents',
   {},
   {
