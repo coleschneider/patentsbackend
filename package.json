@@ -5,7 +5,6 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "prestart": "npm run build",
     "start": "node -r ./tsconfig-paths-bootstrap.js .",
     "start:dev": "node -r dotenv/config -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
     "dev": "nodemon",
