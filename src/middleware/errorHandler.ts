@@ -47,7 +47,6 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
     if (err.isJoi) return createBadRequest(err);
     return new InternalServerError();
   })();
-  console.log({ err });
   return res.status(finalErr.code).json(finalErr.message);
 };
 

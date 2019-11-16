@@ -31,8 +31,8 @@
 import * as joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
-export interface IValidation {
-  options?: IValidationOptions;
+export interface Validation {
+  options?: ValidationOptions;
   body?: joi.SchemaLike;
   headers?: joi.SchemaLike;
   query?: joi.SchemaLike;
@@ -40,18 +40,19 @@ export interface IValidation {
   params?: joi.SchemaLike;
 }
 
-export interface IValidationOptions {
+export interface ValidationOptions {
   allowUnknownBody?: boolean;
   allowUnknownQuery?: boolean;
   allowUnknownHeaders?: boolean;
   allowUnknownParams?: boolean;
   allowUnknownCookies?: boolean;
   joiOptions?: joi.ValidationOptions;
+  [key: string]: any;
 }
+type PFields = 'body' | 'query' | 'headers' | 'params' | 'cookies';
+const props: PFields[] = ['body', 'query', 'headers', 'params', 'cookies'];
 
-const props = ['body', 'query', 'headers', 'params', 'cookies'];
-
-export const validate = (settings: IValidation) => {
+export const validate = (settings: Validation) => {
   let errors: any = [];
   settings.options = settings.options || {};
 
@@ -60,9 +61,9 @@ export const validate = (settings: IValidation) => {
       if (settings.hasOwnProperty(p)) {
         const options = settings.options.hasOwnProperty('joiOptions') ? settings.options.joiOptions : {};
         const name = `allowUnknown${p[0].toUpperCase()}${p.slice(1)}`;
-        // @ts-ignore
+
         options.allowUnknown = settings.options.hasOwnProperty(name) ? settings.options[name] : true;
-        // @ts-ignore
+
         const result = joi.validate(req[p], settings[p], options);
 
         if (result.hasOwnProperty('error') && result.error) {

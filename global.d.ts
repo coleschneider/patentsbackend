@@ -1,4 +1,3 @@
-import axios from 'axios';
 type CompanyFields =
   | 'assignee_id'
   | 'assignee_first_name'
@@ -50,29 +49,3 @@ type Fields =
   | 'assignee_first_name'
   | 'assignee_last_name'
   | 'assignee_organization';
-
-const queryBy = (searchBy: Fields[], term: string) => {
-  return {
-    _and: [
-      {
-        _or: searchBy.map(field => ({
-          _and: [
-            {
-              _contains: {
-                [field]: `${term}`,
-              },
-            },
-          ],
-        })),
-      },
-      {
-        uspc_sequence: 0,
-      },
-    ],
-  };
-};
-
-export const service = axios.create({
-  baseURL: 'http://webapi.patentsview.org/api',
-});
-export default queryBy;

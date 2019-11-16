@@ -20,9 +20,10 @@ const schemaDefinition = Joi.object().pattern(Joi.string(), companyEntity);
 const requestValidation = Joi.object({
   company: Joi.string().required(),
   page: Joi.number().required(),
+  per_page: Joi.number().optional(),
 }).required();
 
-export const companySchemaDefinition: Handler = (req, res, next) => {
+export const patentSchemaDefinition: Handler = (req, res, next) => {
   validationMiddleware({
     query: requestValidation,
     options: {

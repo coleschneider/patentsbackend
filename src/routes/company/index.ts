@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { fetchCompanies } from '../../controllers/company';
+import { fetchCompanies } from '../../controllers/company/search';
 import { companySchemaDefinition } from '../../schemas/company';
 const router = Router();
 
