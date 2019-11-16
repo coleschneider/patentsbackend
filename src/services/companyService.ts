@@ -1,6 +1,7 @@
 import { normalize } from 'normalizr';
 import { companyEntity } from '../entities/companyEntity';
 import queryBy, { service } from './apiService';
+import { NotFound } from 'middleware/errorHandler';
 type CompanyFields =
   | 'assignee_id'
   | 'assignee_first_name'
@@ -164,7 +165,7 @@ class CompanyService {
   searchBy: Fields[];
   constructor(
     query: CompanyParams,
-    searchBy: Fields[] = ['assignee_first_name', 'assignee_last_name', 'assignee_organization'],
+    searchBy: Fields[] = ['assignee_id', 'assignee_first_name', 'assignee_last_name', 'assignee_organization'],
   ) {
     this.query = query;
     this.searchBy = searchBy;
@@ -175,6 +176,9 @@ class CompanyService {
     });
   }
   normalize(data: any) {
+    if (!data.assignees) {
+      throw new NotFound();
+    }
     const { entities, result } = normalize(data.assignees || [], [companyEntity]);
     return { ids: result, entities, count: data.count, total: data.total_assignee_count };
   }
