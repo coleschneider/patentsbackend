@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Application from '../../../app';
 import assert from 'assert';
 import fetchPatentsResponse from './fetchPatents.fixture.json';
-import PatentService from 'services/patentService';
+import PatentService from '../../../services/patentService';
 import request from 'supertest';
 import sinon from 'sinon';
 

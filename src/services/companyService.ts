@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import { companyEntity } from '../entities/companyEntity';
 import queryBy, { service } from './apiService';
-import { NotFound } from 'middleware/errorHandler';
+import { NotFound } from '../middleware/errorHandler';
 type CompanyFields =
   | 'assignee_id'
   | 'assignee_first_name'

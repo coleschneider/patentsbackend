@@ -2,7 +2,7 @@ import { normalize } from 'normalizr';
 import queryBy, { service } from './apiService';
 import { patentEntity } from '../entities/patentEntity';
 import { AxiosPromise } from 'axios';
-import { NotFound } from 'middleware/errorHandler';
+import { NotFound } from '../middleware/errorHandler';
 type CompanyFields =
   | 'assignee_id'
   | 'assignee_first_name'
