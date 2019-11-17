@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import validationMiddleware from '../middleware/validationMiddleware';
-import { Handler } from 'express';
+import { Request, Response, NextFunction } from 'express';
+
 const companyEntity = Joi.object({
   assignee_first_name: Joi.string(),
   assignee_first_seen_date: Joi.string(),
@@ -22,7 +23,7 @@ const requestValidation = Joi.object({
   page: Joi.number().required(),
 }).required();
 
-export const companySchemaDefinition: Handler = (req, res, next) => {
+export const companySchemaDefinition = (req: Request, res: Response, next: NextFunction) => {
   validationMiddleware({
     query: requestValidation,
     options: {
